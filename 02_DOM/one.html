@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Learning</title>
+    <style>
+      .bg-black {
+        background-color: #212121;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body class="bg-black">
+    <div>
+      <h1 id="h1" class="heading1">
+        DOM learning with the help of chai aur code channel
+        <span style="display: none;">Span text</span>
+      </h1>
+      <h1 id="h2" class="heading2">
+        Testing heading two
+      </h1>
+      <h1 id="h3" class="heading3">
+        testing heading three
+      </h1>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur,
+        accusamus.
+      </p>
+      <input type="password" name="password" id="" aria-label="password" placeholder="password"/>
+
+      <ul>
+        <li class="list-item">1</li>
+        <li class="list-item">2</li>
+        <li class="list-item">3</li>
+        <li class="list-item">4</li>
+        <li class="list-item">5</li>
+      </ul>
+    </div>
+
+    <script>
+        const title = document.getElementById("h1");
+        console.log(title);
+
+        console.log(title.textContent)  // return all the text either display or not
+        console.log(title.innerText)  // return only visible text
+        console.log(title.innerHTML)  // return all the html inside that tag
+
+        // querySelector....
+        let tag = document.querySelector("h1");
+        console.log("Element selected by html tag : ",tag); // return only first tag
+
+        tag = document.querySelector("#h2");  // element select by id
+        console.log("Element selected by id: ",tag);
+
+        tag = document.querySelector(".heading3");  // element select by id
+        console.log("Element selected by classname: ",tag);
+
+        tag = document.querySelector("input[type=password]");  // element select by tag with some attribute
+        console.log("Element selected by tag with attribute: ",tag);
+
+        let tempList = document.querySelectorAll('li');  // return ...node list... not array we can use foreach but not map
+        console.log(tempList);
+
+        // apply some styling on tempList
+        // tempList.style.backgroundColor = 'green' // return error 
+        tempList[0].style.backgroundColor = 'green'
+
+        // tempList.forEach((item)=>{
+        //     item.innerText = 'NodeList : 5'
+        // })
+
+        tempList = document.getElementsByClassName("list-item")  // return HTML Collection not nodelist or array
+        console.log(tempList);
+
+        // now the tampList is HTMLCollection so foreach also not work...
+        // tempList.forEach((item)=>{
+        //     item.innerText = 5
+        // }) // return error
+
+        // now we going to change HTML/NodeLIst to array
+        const tempListArray = Array.from(tempList);
+        console.log(tempListArray);
+
+        // tempListArray.style.title = "Unordered List"  // generates error
+
+        tempListArray.forEach((item)=>{
+            item.innerText = `tempListArray `+5
+            item.style.backgroundColor = 'gray'
+            item.style.padding = '5px'
+            item.style.fontSize = "large"
+            item.style.borderRadius = "30px"
+            item.style.textAlign = "center"
+            item.style.marginBottom = "10px"
+        }) 
+
+
+
+    </script>
+  </body>
+</html>
