@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+    <style>
+      body {
+        background-color: #212121;
+        color: #fff;
+        text-align: center;
+      }
+      .parent {
+        background-color: #8b8b8d;
+      }
+      button {
+        background-color: blue;
+        color: white;
+        font-size: 16px;
+        padding: 8px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <!-- this is also a node in document -->
+      <div id="d1" class="day">Mondey</div>
+      <div id="d2" class="day">Tuesday</div>
+      <div id="d3" class="day">Wednesday</div>
+      <div id="d4" class="day">Thrusday</div>
+    </div>
+    <div>
+      <button id="btn" type="button" aria-label="btn">Create New Day</button>
+      <button id="btn2" type="button" aria-label="btn">Remove Day</button>
+    </div>
+
+    <script>
+      let parent = document.querySelector(".parent");
+      //   console.log(parent);
+      //   console.log(parent.children);
+
+      for (let i = 0; i < parent.children.length; i++) {
+        // console.log(parent.children[i].innerHTML);
+        const day = parent.children[i];
+        // apply some styling
+        day.style.color = "white";
+        day.style.backgroundColor = "gray";
+        day.style.padding = "5px";
+        day.style.marginBottom = "10px";
+        day.style.borderRadius = "10px";
+        day.style.width = "100px";
+        day.style.textAlign = "center";
+      }
+
+      //   console.log(parent.firstElementChild);
+      //   console.log(parent.lastElementChild);
+
+      const dayOne = document.querySelector("#day1");
+
+      // console.log(dayOne);
+      // console.log(dayOne.parentElement);
+      // console.log(dayOne.nextElementSibling);
+
+      console.log("Nodes: ", parent.childNodes);
+
+      const btn = document.getElementById("btn");
+      //   btn.style.backgroundColor = "blue";
+      //   btn.style.color = "white";
+      //   btn.style.fontSize = "16px";
+      //   btn.style.padding = "8px";
+      //   btn.style.borderRadius = "10px";
+      //   console.log(btn);
+      let num = 0;
+
+      const newElement = () => {
+        const div = document.createElement("div");
+        div.className = "day"
+        div.textContent = `new Element ${num}`;
+        div.style.color = "white";
+        div.style.backgroundColor = "gray";
+        div.style.padding = "5px";
+        div.style.marginBottom = "10px";
+        div.style.borderRadius = "10px";
+        div.style.width = "100px";
+        // div.style.textAlign = "center";
+        console.log(div);
+        div.id = 5 + num;
+        num++;
+        parent.appendChild(div);
+      };
+
+      btn.onclick = newElement;
+
+      const btn2 = document.getElementById("btn2");
+
+      const removeElement = () => {
+        const lastElement = parent.querySelector('div[class="day"]:last-child');
+        if (lastElement) {
+          parent.removeChild(lastElement);
+        }
+        num--;
+      };
+
+      btn2.addEventListener("click", removeElement);
+
+    </script>
+  </body>
+</html>
